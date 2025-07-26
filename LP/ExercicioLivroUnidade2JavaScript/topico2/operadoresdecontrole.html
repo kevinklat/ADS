@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>if em JavaScript</title>
+    <script type="text/javascript">
+
+        document.write("<p>");
+        document.write("<h1>if em JavaScript</h1>");
+        // Define a variável para armazenar o saldo bancário
+        var saldoBancario = 40000;
+        if (saldoBancario >= 35340) {
+            document.write("Irei comprar um carro 0 km :-)");
+        } else {
+            document.write("Irei comprar um carro usado :-|");
+        }
+        // Resultado: Irei comprar um carro 0 km :-)
+        document.write("</p>");
+
+        document.write("<p>");
+        document.write("<h1>Verificando erro ao fazer contas</h1>");
+        var contaLouca = 30 / 0;
+        if (isFinite(contaLouca)) {
+            document.write("A conta louca deu certo :-)");
+        } else {
+            document.write("Deu erro na conta louca :-(");
+        }
+        // Resultado: Deu erro na conta louca :-(
+        document.write("</p>");
+
+        document.write("<p>");
+        document.write("<h1>Imprimindo os algarismos de um a dez com o looping for</h1>");
+        // Imprimindo os algarismos de um a dez
+        // com o looping for
+        for (var i = 1; i <= 10; ++i) {
+            document.write(i + "<br />");
+        }
+        // Resultado 1 2 3 4 5 6 7 8 9 10
+        // um número por linha
+        document.write("</p>")
+
+        document.write("<p>");
+        document.write("<h1>Imprimindo os algarismos de um a dez com o looping while</h1>");
+        // Imprimindo os algarismos de um a dez
+        // com o looping while
+        var i = 1;
+        while (i <= 10) {
+            document.write(i + "<br />");
+            ++i;
+        }
+        // Resultado 1 2 3 4 5 6 7 8 9 10
+        // um número por linha
+        document.write("</p>");
+
+        document.write("<p>");
+        document.write("<h1>Imprimindo os algarismos de um a dez com o looping do while</h1>");
+        // Imprimindo os algarismos de um a dez
+        // com o looping do while
+        // Note que o bloco de código entre
+        // do e while é executado pelo menos
+        // uma vez
+        var i = 1;
+        do {
+            document.write(i + "<br />");
+            ++i;
+        } while (i <= 10)
+        // Resultado 1 2 3 4 5 6 7 8 9 10
+        // um número por linha
+        document.write("</p>");
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

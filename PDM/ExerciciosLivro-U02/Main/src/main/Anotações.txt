@@ -1,0 +1,23 @@
+#Anotações sobre Kotlin
+
+##Variaveis
+var = mutavel, val = imutavel
+Tipos de variaveis: Int, Double, String?
+Declaração de variavel: var <nome>: tipo = <valor>
+Declaração de variavel sem tipo: var <nome> = <valor>
+Exemplo declaração: val pi: Double = 3.14
+
+Chamar variavel: $<variavel>
+Converter variavel <variavel>.to<tipo>()
+
+##Arrays
+Tipos de Array:
+Declaração de variavel: val <nome>: tipo = tipoArrayOf(<valor>)
+Declaração de variavel sem tipo: val <nome> = ArrayOf(<valor>)
+Exemplo declaração:  val numeros: IntArray = intArrayOf(1,2,3,4,5)
+
+Manipulando Arrays:
+size: retorna o tamanho do array. Ex: val tamanho = frutas.size
+forEach: permite iterar sobre os elementos do array. Ex: numeros.forEach {println(it)}
+sorted: retorna uma cópia do array ordenado. Ex: val frutasOrdenadas = frutas.sorted()
+filter: retorna um novo array com os elementos que atendem a uma condição. Ex: val numerosPares = numeros.filter { it % 2 == 0 }

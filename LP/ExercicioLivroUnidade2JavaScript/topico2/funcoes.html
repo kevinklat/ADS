@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>Declarando funções</title>
+    <script type="text/javascript">
+
+        document.write("<h1>DECLARANDO FUNÇÕES EM JAVASCRIPT</h1>");
+        var fSoma = function (x, y) {
+            var resultado = x + y;
+            return resultado;
+        }
+        document.write("<p>");
+
+        var soma = fSoma(3, 5);
+        document.write(soma);
+        // Resultado: 8
+
+
+        document.write("<h1>Declara uma variável dentro da função</h1>");
+        // Declara uma função
+        var funcao = function () {
+            // Declara uma variável dentro da função
+            var internaFuncao = "dentro da função";
+            // A variável está viva somente até aqui
+            document.write(internaFuncao);
+            document.write("<br />");
+            // Resultado: dentro da função
+        }
+        // Se acessar a variável internaFuncao aqui ela não existe mais. Vai ocorrer um erro
+        //  de execução e vai abortar a execução do script
+        // Comente a linha seguinte se quiser ver o script funcionar
+        //document.write(internaFuncao);
+        // Resultado: erro, script abortado !!!
+        // Iniciamos um looping para termos um bloco de instruções para ilustrar a
+        // situação na qual as variáveis de blocos de instruções permanecem declaradas
+        // mesmo após o bloco de instruções terminar
+        for (var i = 0; i < 1; i++) {
+            var internaFor = "dentro do for";
+            document.write(internaFor);
+            document.write("<br />");
+            // Resultado: dentro do for
+        }
+        document.write("Saiu do for <br/>");
+        document.write(internaFor);
+        // Resultado: dentro do for
+
+       document.write("<h1>Declara uma variável dentro da função</h1>");
+       
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
