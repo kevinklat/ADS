@@ -1,3 +1,5 @@
+//Livro PDM Unidade 2 Topico 1
+
 /* //Declaração de Variaveis
  fun main() {
     //declarando uma variavel
@@ -66,4 +68,39 @@ fun main() {
 
 }*/
 
-//Continua na unidade 2 topico 1 Collections
+/*
+//Listas Mutaveis
+fun main(){
+    val numeros: MutableList<Int> = mutableListOf(1, 2, 3, 4, 5)
+    //Adicionando
+    numeros.add(6)
+    //Removendo
+    numeros.remove(3)
+    //Imprimindo
+    println("Lista de numeros: $numeros")
+
+}*/
+
+/*
+//Conjuntos
+fun main (){
+    val notas: MutableSet<Double> = mutableSetOf( 8.5, 6.7, 9.4)
+    //Adicionando um valor
+    notas.add(7.0)
+    //removendo um valor
+    notas.remove(6.7)
+    //imprimindo
+    println("Conjunto de notas: $notas")
+}*/
+
+/*
+//Funções de Extensão
+fun main () {
+    val numeros = listOf(1, 2, 3, 4, 5)
+    val quadrados = numeros.map{it * it}
+    val pares = numeros.filter { it % 2 ==0}
+
+    println("Numeros: $numeros")
+    println("Quadrado dos numeros: $quadrados")
+    println("Numeros pares: $pares")
+}*/
