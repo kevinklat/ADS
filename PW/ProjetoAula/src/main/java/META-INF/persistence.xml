@@ -1,0 +1,28 @@
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<!-- resource_local quando configuramos mysql aqui no persistence-->
+	<persistence-unit name="Uniasselvi" transaction-type="RESOURCE_LOCAL">
+	
+              <provider>org.hibernate.ejb.HibernatePersistence</provider>
+              <!-- 
+              <class>br.com.entity.Cor</class>
+              <class>br.com.entity.Grupo</class>
+              <class>br.com.entity.Subgrupo</class>
+              <class>br.com.entity.Produto</class>
+              <class>br.com.entity.Tamanho</class>
+              <class>br.com.entity.Usuario</class>
+   -->
+              <properties>
+
+                    <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+                     
+                    <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/uniasselvi" />
+                    <property name="javax.persistence.jdbc.user" value="root" />
+                    <property name="javax.persistence.jdbc.password" value="root" />
+<!--                    
+                    <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/varejo" />
+                    <property name="javax.persistence.jdbc.user" value="root" />
+-->
+              </properties>
+	
+	</persistence-unit>
+</persistence>
