@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head> 
+<body> 
+
+	<h:form id ="formCofCor">
+		<h:panelGrid>
+			<h:outputLabel for="itDescricao"> Descrição:</h:outputLabel>
+			<p:inputText id="itDescricao" required="true" requiredMessage="Campo descrição obrigatório!" value="#{CombustivelMB.combustivel.descricao}">
+			</p:inputText>
+		<p:commandButton value="Cadastrar" actionListener="#{CombustivelMB.efetuarCadastro}" ajax="false" />
+		</h:panelGrid>
+	</h:form>
+	<br /> <br />
+	
+	<h:form>
+		<p:dataTable var="combustivel" value="#{CombustivelMB.listarCombustiveis}">
+			<f:facet name="header">Combustiveis Cadastrados</f:facet>
+			<p:column headerText="Código">
+				#{combustivel.codigo}
+			</p:column>
+			<p:column headerText="Descrição">
+				#{combustivel.descricao}				
+			</p:column>
+			<p:column headerText="Ação">
+				<p:commandButton value="Excluir" action="#{CombustivelMB.excluirCombustivel(combustivel.codigo)}" ajax="false"/>
+			</p:column>
+		</p:dataTable> 
+	</h:form>
+
+</body> 
+</html>

@@ -20,6 +20,23 @@ public class Pessoa implements Serializable {
 
 	}
 
+	
+
+	public Pessoa(Long id, String nome, double salario, String funcoes, String email, Date dataNascimento, Sexo sexo,
+			String cargo) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.salario = salario;
+		this.funcoes = funcoes;
+		this.email = email;
+		this.dataNascimento = dataNascimento;
+		this.sexo = sexo;
+		this.cargo = cargo;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
@@ -102,7 +119,7 @@ public class Pessoa implements Serializable {
 	}
 
 	public enum Sexo {
-		MASCULINO, FEMENINO, NEUTRO;
+		MASCULINO, FEMININO, NEUTRO;
 	}
 
 	@Override

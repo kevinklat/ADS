@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+
+
+	<h:form>
+
+		<p:dataTable value="#{pessoaMB.pessoas}" var="pessoa" rows="7"
+			paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="1,3,6"
+			currentPageReportTemplate="Exibindo {startRecord} a {endRecord} de {totalRecords} registros">
+
+			<f:facet name="header">
+				<h:outputText value="Lista de Pessoas" />
+			</f:facet>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<h:outputText value="#{pessoa.id}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Nome" />
+				</f:facet>
+				<h:outputText value="#{pessoa.nome}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Email" />
+				</f:facet>
+				<h:outputText value="#{pessoa.email}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Sexo" />
+				</f:facet>
+				<h:outputText value="#{pessoa.sexo}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Sálario" />
+				</f:facet>
+				<h:outputText value="#{pessoa.salario}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Cargo" />
+				</f:facet>
+				<h:outputText value="#{pessoa.cargo}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Ações" />
+				</f:facet>
+				<p:commandButton action="#{pessoaMB.editar(pessoa)}" value="Editar" />
+				<p:commandButton value="Remover" />
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+
+	<br> <h:outputLink value="index.xhtml">
+			<h:outputText value="Voltar" />
+		</h:outputLink> </br>
+
+</body>
+</html>

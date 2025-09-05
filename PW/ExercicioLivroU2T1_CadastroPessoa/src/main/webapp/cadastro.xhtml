@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<script type="text/javascript">
+	PrimeFaces.locales['pt'] = {  
+            closeText: 'Fechar',  
+            prevText: 'Anterior',  
+            nextText: 'Próximo',  
+            currentText: 'Começo',  
+            monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],  
+            monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],  
+            dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],  
+            dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],  
+            dayNamesMin: ['D','S','T','Q','Q','S','S'],  
+            weekHeader: 'Semana',  
+            firstDay: 1,  
+            isRTL: false,  
+            showMonthAfterYear: false,  
+            yearSuffix: '',  
+            timeOnlyTitle: 'Só Horas',  
+            timeText: 'Tempo',  
+            hourText: 'Hora',  
+            minuteText: 'Minuto',  
+            secondText: 'Segundo',  
+            currentText: 'Data Atual',  
+            ampm: false,  
+            month: 'Mês',  
+            week: 'Semana',  
+            day: 'Dia',  
+            allDayText : 'Todo Dia'  
+        };  
+
+	</script>
+	<style type="text/css">
+	.value{font-weight: bolt;
+	}
+	</style>
+	
+</h:head>
+
+
+<h:body>
+	<h1>Cadastro de Pessoa</h1>
+	<h:form>
+		<h:messages>
+			<h:panelGrid columns="2" border="1">
+				<f:facet name="header">
+					<h:outputText value="Cadastro de Pessoa" />
+				</f:facet>
+
+				<h:outputLabel value="Nome" for="itNome" />
+				<p:inputText id="itNome" required="true"
+					requiredMessage="O nome é Obrigatório" size="30"
+					value="#{pessoaMB.pessoa.nome}" />
+
+				<h:outputLabel value="Salario" for="itSalario" />
+				<p:inputText id="itSalario" required="true"
+					requiredMessage="Campo Obrigatório"
+					validatorMessage="O valor do salario não está entre 0,01 e 100000,0!"
+					size="10" value="#{pessoaMB.pessoa.salario}">
+					<f:convertNumber pattern="#,###.00" locate="pt_BR" />
+					<f:validateDoubleRange minimum="0.01" maximum="100000.0" />
+				</p:inputText>
+
+				<h:outputLabel value="Descrição das funções" />
+				<h:panelGroup>
+					<p:inputTextarea id="itaDescricao" cols="31"
+						value="#{pessoaMB.pessoa.funcoes}" />
+					<h:outputText value="(Opcional)" />
+				</h:panelGroup>
+
+				<h:outputLabel value="Email" for="itEmail" />
+				<h:panelGroup>
+					<p:inputText id="itEmail" size="30" required="true"
+						requiredMessage="O Email é Obrigatório!"
+						validator="#{pessoaMB.validarEmail}"
+						value="#{pessoaMB.pessoa.email}" />
+					<h:outputText value="(Será utilizado como Login)" />
+				</h:panelGroup>
+
+				<h:outputLabel value="Data de Nascimento:" for="itDataNasc" />
+
+				<p:calendar id="itDataNasc" locale="pt" pattern="dd/MM/yyyy"
+					value="#{pessoaMB.pessoa.dataNascimento}" mode="popup" />
+
+
+
+				<h:outputLabel value="Sexo" for="cbSexo" />
+				<h:panelGroup>
+					<h:selectOneRadio id="cbSexo" value="#{pessoaMB.pessoa.sexo}">
+						<f:selectItems value="#{pessoaMB.sexos}" />
+						<f:ajax event="change" listener="#{pessoaMB.alteraSalario}"
+							render="itSalario" execute="itSalario" />
+					</h:selectOneRadio>
+				</h:panelGroup>
+
+				<h:outputLabel value="Cargo:" id="cpCargo" />
+				<p:selectOneMenu value="#{pessoaMB.pessoa.cargo}">
+					<f:selectItem itemValue="arquiteto"
+						itemLabel="Arquiteto de Software" />
+					<f:selectItem itemValue="desenvolvedor" itemLabel="Desenvolvedor" />
+					<f:selectItem itemValue="analista" itemLabel="Analista de Sistemas" />
+				</p:selectOneMenu>
+
+				<f:facet name="footer">
+					<h:commandButton action="#{pessoaMB.salvar()}" value="Salvar" />
+					<h:commandButton action="#{pessoaMB.novo}" value="Novo" />
+				</f:facet>
+
+			</h:panelGrid>
+		</h:messages>
+	</h:form>
+	<br> <h:outputLink value="index.xhtml">
+			<h:outputText value="Voltar" />
+		</h:outputLink> </br>
+</h:body>
+
+</html>
