@@ -52,7 +52,9 @@
 			<h:panelGrid columns="2" border="1">
 				<f:facet name="header">
 					<h:outputText value="Cadastro de Pessoa" />
+					<h:inputHidden value="#{pessoaMB.pessoa.id}"/>
 				</f:facet>
+				
 
 				<h:outputLabel value="Nome" for="itNome" />
 				<p:inputText id="itNome" required="true"

@@ -4,23 +4,37 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name = "pessoa")
 public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private double salario;
 	private String funcoes;
 	private String email;
+	@Temporal(value = TemporalType.DATE)
 	private Date dataNascimento;
+	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
 	private String cargo;
 
 	public Pessoa() {
 
 	}
-
-	
 
 	public Pessoa(Long id, String nome, double salario, String funcoes, String email, Date dataNascimento, Sexo sexo,
 			String cargo) {
@@ -128,4 +142,5 @@ public class Pessoa implements Serializable {
 				+ email + ", dataNascimento=" + dataNascimento + ", sexo=" + sexo + ", cargo=" + cargo + "]";
 	}
 
+	
 }

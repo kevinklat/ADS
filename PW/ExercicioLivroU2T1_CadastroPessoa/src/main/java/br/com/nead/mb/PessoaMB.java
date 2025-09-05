@@ -3,9 +3,9 @@ package br.com.nead.mb;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -14,6 +14,10 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.transaction.UserTransaction;
 
 import br.com.nead.model.Pessoa;
 import br.com.nead.model.Pessoa.Sexo;
@@ -23,6 +27,11 @@ import br.com.nead.model.Pessoa.Sexo;
 public class PessoaMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private List<Pessoa> pessoas;
+	@PersistenceContext
+	private EntityManager manager;
+	@Resource
+	UserTransaction tx;
 	private Pessoa pessoa = new Pessoa();
 
 	public Pessoa getPessoa() {
@@ -51,7 +60,26 @@ public class PessoaMB implements Serializable {
 	}
 
 	public void salvar() {
-		System.out.println(this.pessoa);
+		try {
+			tx.begin();
+			if (pessoa.getId() == null)// criando a pessoa
+				manager.persist(pessoa);
+			else // alterando a pessoa
+				manager.merge(pessoa);
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void remover(Pessoa p) {
+		try {
+			tx.begin();
+			manager.remove(manager.merge(p));
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void novo() {
@@ -59,33 +87,22 @@ public class PessoaMB implements Serializable {
 	}
 
 	public List<Pessoa> getPessoas() {
-		List<Pessoa> pessoas = new ArrayList<Pessoa>();
-
-		pessoas.add(new Pessoa(null, "Leila", 8700.00, "Administar os rebeldes", "pleia@gmail.com", new Date(), Sexo.FEMININO,
-				"Gerente)"));
-		pessoas.add(new Pessoa(null,"Anakin SkyWalker", 8700.00, "Estudar a força", "anakin@gmail.com", new Date(),
-				Sexo.MASCULINO, "Anikilar os Jedi"));
-		pessoas.add(new Pessoa(null,"Kevin", 4000.00, "Programar", "kevin@gmail.com", new Date(),
-				Sexo.MASCULINO, "Jogador"));
-		pessoas.add(new Pessoa(null,"Isaac", 4000.00, "Brincar", "isaac@gmail.com", new Date(),
-				Sexo.MASCULINO, "Chorar"));
-		pessoas.add(new Pessoa(null,"Fernanda", 4000.00, "Trabalhar", "kevin@gmail.com", new Date(),
-				Sexo.FEMININO, "Salão"));
-
+		Query q = manager.createQuery("select a from Pessoa a", Pessoa.class);
+		List<Pessoa> pessoas = q.getResultList();
 		return pessoas;
 	}
-	
+
 	public String editar(Pessoa p) {
 		this.pessoa = p;
 		return "cadastro.xhtml";
 	}
-	
+
 	public void alteraSalario(AjaxBehaviorEvent event) {
 		System.out.println("Executando o metodo [alteraSalario]");
 		UIInput cbsexo = (UIInput) event.getSource();
-		Sexo sexo = (cbsexo.getValue().toString().equals("FEMININO"))? Sexo.FEMININO: Sexo.MASCULINO;
-		double novoSalario = (sexo == Sexo.FEMININO)? pessoa.getSalario()*1.1: pessoa.getSalario();
-		
+		Sexo sexo = (cbsexo.getValue().toString().equals("FEMININO")) ? Sexo.FEMININO : Sexo.MASCULINO;
+		double novoSalario = (sexo == Sexo.FEMININO) ? pessoa.getSalario() * 1.1 : pessoa.getSalario();
+
 		pessoa.setSalario(novoSalario);
 
 	}
