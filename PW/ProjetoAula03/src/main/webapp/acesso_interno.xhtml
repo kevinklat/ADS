@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>Acesso Interno</title>
+</h:head>
+<h:body>
+
+	<h:form id="formLogin">
+		
+		<h:panelGrid >
+			<p:growl id="mensagem" showDetail="true" sticky="true" />
+		
+			<h:outputLabel>Usuário: #{loginMB.usuario.nome}</h:outputLabel>
+		</h:panelGrid>
+		
+		<h:panelGrid >
+			<p:menu>
+				<p:submenu label="Cadastrar">
+					<p:menuitem value="Cliente" action="#{loginMB.cadastrar}"></p:menuitem>
+				</p:submenu>
+				<p:submenu label="Consultar">
+					<p:menuitem value="Clientes" action="#{clienteMB.listarClientesCadastrados}"></p:menuitem>
+				</p:submenu>
+				<p:submenu label="Sair Sistema">
+					<p:menuitem value="Sair do Sistema (Logout)" action="#{loginMB.logout()}"></p:menuitem>
+				</p:submenu>
+			</p:menu>
+		</h:panelGrid>		
+		
+
+	</h:form>
+
+</h:body>
+</html>
+
+

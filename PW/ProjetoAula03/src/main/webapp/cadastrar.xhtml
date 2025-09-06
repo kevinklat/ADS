@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+<title>Cadastro de Cores</title>
+
+</h:head>
+<h:body>
+
+	<h:form id="formCadastro">
+		<h:panelGrid >
+			<p:growl id="mensagem" showDetail="true" sticky="true" />
+		</h:panelGrid>
+		
+		<h:panelGrid>
+			<h:outputLabel for="itNome">Nome:</h:outputLabel>
+			<p:inputText id="itNome" required="true" requiredMessage="Campo nome não informado!" 
+				value="#{clienteMB.cliente.nome}" >
+			</p:inputText>
+			
+			<h:outputLabel for="itFone">Fone:</h:outputLabel>
+			<p:inputText id="itFone" required="true" requiredMessage="Campo fone não informado!" 
+				value="#{clienteMB.cliente.telefone}" mask="(99)9999-9999" >
+			</p:inputText>
+			
+			<h:outputLabel for="itEmail">E-mail:</h:outputLabel>
+			<p:inputText id="itEmail" required="true" requiredMessage="Campo e-mail não informado!" 
+				value="#{clienteMB.cliente.email}">
+			</p:inputText>
+			
+			
+			<p:commandButton value="Cadastrar" actionListener="#{clienteMB.gravarCadastro}" ajax="false" />
+		</h:panelGrid>		
+	</h:form>	
+	<br /><br />	
+		
+	<h:form id="formSairCor">
+			<h:panelGrid columns="3">
+				<br /><br />
+				<p:commandButton value="Cancelar/Voltar" action="#{loginMB.voltarPaginaInicial}" ajax="false"></p:commandButton>
+			</h:panelGrid>
+	</h:form>
+</h:body>
+</html>
+
